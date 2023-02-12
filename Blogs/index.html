@@ -18,7 +18,10 @@
       <header>
     <!-- Intro settings -->
     <style>
- 
+ #intro {
+          /* Margin to fix overlapping fixed navbar */
+          margin-top: 60px;
+        }
       @media (max-width: 991px) {
         #intro {
           /* Margin to fix overlapping fixed navbar */
@@ -29,9 +32,9 @@
     </style>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-sm navbar-light">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
       <div class="container">
-          <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i> F.MILON</a>
+          <!-- <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i> F.MILON</a> -->
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
               aria-label="Toggle navigation">
@@ -59,15 +62,7 @@
                 </li>
               </ul>
 
-              <ul class="navbar-nav ml-lg-auto">
-                  <div class="ml-lg-4">
-                    <div class="color-mode d-lg-flex justify-content-center align-items-center">
-                      <i class="color-mode-icon"></i>
-                      Color mode
-                    </div>
-                    
-                  </div>
-              </ul>
+           
           </div>
       </div>
   </nav>

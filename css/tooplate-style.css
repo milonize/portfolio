@@ -291,6 +291,26 @@ b, strong {
 
 .dark-mode {
   background: #0c0c0d;
+
+}
+.dark-mode .card {
+  background: #0c0c0d;
+  border: 1px solid gray;
+  
+}
+.dark-mode .card a{
+color: white;
+  border: 1px solid gray;
+  
+}
+.dark-mode .card a:hover{
+
+  background: #76be77;
+    
+  }
+.dark-mode .card h6{
+  color: white !important;
+  
 }
 .dark-mode .navbar-light .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.8);
@@ -327,7 +347,7 @@ b, strong {
 }
 .timeline-wrapper:before {
   content: "";
-  background: #2C5F2DFF;
+  background: rgba(44, 95, 45, 0.52);
   width: 3px;
   height: 100%;
   position: absolute;
@@ -335,7 +355,8 @@ b, strong {
 }
 
 .timeline-yr {
-  background: #2C5F2DFF;
+  background: #76be77;
+  overflow: hidden;
   border-radius: 100%;
   position: absolute;
   width: 75px;
@@ -433,7 +454,7 @@ b, strong {
   border-color: #2C5F2DFF;
 }
 .contact-form .submit-btn {
-  background: #2C5F2DFF;
+  background: #5f9860;
   border-radius: 50px;
   color: #ffffff;
   font-weight: bold;

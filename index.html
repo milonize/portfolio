@@ -318,10 +318,11 @@ https://www.tooplate.com/view/2115-marvel
           </div>
 
           <div class="col-lg-6 col-12">
+        <div id="formAlert"></div>
             <div class="contact-form">
               <h2 class="mb-4">Interested to work together? Let's talk</h2>
-
-              <form action="" method="get">
+              
+              <form id="contact_form">
                 <div class="row">
                   <div class="col-lg-6 col-12">
                     <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
@@ -371,6 +372,26 @@ https://www.tooplate.com/view/2115-marvel
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
  
-     
+     <script>
+      document.querySelector('#contact_form').addEventListener('submit', (e) => {
+        e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  console.log(data);
+  $.ajax({
+    url:"contact.php",
+    type:"post",
+    data:{
+      name:data.name,
+      email:data.email,
+      message:data.message,
+    },beforeSend:function(){
+      console.log("sending");
+    },success:function(res){
+      console.log(res);
+
+    }
+  })
+});
+     </script>
   </body>
 </html>

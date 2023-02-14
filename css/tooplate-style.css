@@ -293,6 +293,20 @@ b, strong {
   background: #0c0c0d;
 
 }
+.dark-mode .show{
+  background: #0c0c0d;
+
+}
+.dark-mode .collapsed{
+  color: #0c0c0d;
+
+}
+.dark-mode #navbarNav{
+  background-color: #474559;
+  border-radius: 20px;
+  padding:0px 10px;
+
+}
 .dark-mode .card {
   background: #0c0c0d;
   border: 1px solid gray;
@@ -498,7 +512,7 @@ color: white;
   }
 
   .color-mode {
-    display: none;
+    display: block;
   }
 
   .about-image {

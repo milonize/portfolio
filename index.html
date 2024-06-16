@@ -82,10 +82,10 @@
             <h1 class="animated animated-text">
               <span class="mr-2">Hey folks, I'm</span>
               <div class="animated-info">
-                <span class="animated-item">MILON</span>
-                <span class="animated-item">Web Designer</span>
+                <span class="animated-item">MD.MILON</span>
+                <span class="animated-item">WebDesigner</span>
             
-                <span class="animated-item">Backend expert</span>
+                <span class="animated-item">BackendExpert</span>
               </div>
             </h1>
 
@@ -340,14 +340,14 @@
           <div class="contact-info d-flex justify-content-between align-items-center py-4 px-lg-5">
             <div class="contact-info-item">
               <h3 class="mb-3 text-white">Say hello</h3>
-              <p class="footer-text mb-0">880 1754521879</p>
-              <p><a href="mailto:hello@company.co">coding.house240@gmail.com</a></p>
+              <p class="footer-text mb-0">+880 13 30792 338</p>
+              <p><a href="mailto:hello@company.co">milonizehere@gmail.com</a></p>
             </div>
 
             <ul class="social-links">
-              <li><a href="#" class="uil uil-facebook" data-toggle="tooltip" data-placement="left" title="Facebook"></a>
+              <li><a href="https://www.facebook.com/nirobahammad240/" class="uil uil-facebook" data-toggle="tooltip" data-placement="left" title="Facebook"></a>
               </li>
-              <li><a href="#" class="uil uil-instagram" data-toggle="tooltip" data-placement="left"
+              <li><a href="https://www.instagram.com/nirobahammad89" class="uil uil-instagram" data-toggle="tooltip" data-placement="left"
                   title="Instagram"></a></li>
               <li><a href="#" class="uil uil-youtube" data-toggle="tooltip" data-placement="left" title="Youtube"></a>
               </li>
@@ -362,27 +362,29 @@
 
             <form id="contact_form">
               <div id="formAlert">
-                <div class="alert alert-success" role="alert">
-                  When this site goes live, then work from this form.
-                </div>
+                
               </div>
               <div class="row">
                 <div class="col-lg-6 col-12">
-                  <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
+                  <input type="text" class="form-control" name="name" placeholder="Your Name" id="name" required>
                 </div>
 
                 <div class="col-lg-6 col-12">
-                  <input type="email" class="form-control" name="email" placeholder="Email" id="email">
+                  <input type="email" class="form-control" name="email" placeholder="Email" id="email" required>
                 </div>
 
                 <div class="col-12">
-                  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
+                  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message" required></textarea>
                 </div>
-
+                <div class="col-lg-6 col-12">
+                  <input type="number" class="form-control" name="key" placeholder="Verification key" id="key" title="Hello" required>
+                  
+                </div>
                 <div class="ml-lg-auto col-lg-5 col-12">
                   <input type="submit" class="form-control submit-btn" value="Send Button">
                 </div>
               </div>
+              <small class="text-danger"><b>Note:</b> When you receive our reply, ask for the verification key to confirm it's from us.</small>
             </form>
           </div>
         </div>
@@ -397,9 +399,12 @@
       <div class="row">
 
         <div class="col-lg-12 col-12">
-          <p class="copyright-text text-center">Copyright &copy; 2023 CodingHouse240 . All rights reserved</p>
+          <p class="copyright-text text-center"><script>
+            document.write('&copy; ' + new Date().getFullYear() + ' MiloniZe');
+          </script>
+           . All rights reserved</p>
           <p class="copyright-text text-center">Designed by <a rel="nofollow"
-              href="https://www.facebook.com/profile.php?id=100084566347569" class="text-success">MiloniZe</a></p>
+              href="https://www.facebook.com/profile.php?id=61560968403557" class="text-success">MiloniZe</a></p>
         </div>
 
       </div>
@@ -416,14 +421,66 @@
   <script src="js/smoothscroll.js"></script>
   <script src="js/custom.js"></script>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    document.querySelector('#contact_form').addEventListener('submit', (e) => {
+    $('#contact_form').submit(function(e) {
       e.preventDefault();
-      const data = Object.fromEntries(new FormData(e.target).entries());
-      console.log(data);
+      
+      const formData = {
+      name: $('#name').val(),
+      email: $('#email').val(),
+      message: $('#message').val(),
+      key: $('#key').val()
 
+      
+    };// collect form data
+
+    const message = `
+      New message: ${formData.key}
+      Name: ${formData.name}
+      Email: ${formData.email}
+      Message: ${formData.message}
+    `; // formating
+
+
+      const chat_id = '6026204169';
+      const telegram_api = '6992205744:AAGuzmXLjNAG0L2CxutG005q4jn18IZprYU'; // Replace with your actual API key
+      
+      $.ajax({
+        url: `https://api.telegram.org/bot${telegram_api}/sendMessage`,
+        type: 'POST',
+        data: {
+          chat_id: chat_id,
+          text: message
+        },
+        success: function(response) {
+          $('#formAlert').html(`
+            <div class="alert alert-success" role="alert">
+              Thanks for your message!
+            </div>`
+          );
+          // Optionally, reset the form
+          $('#contact_form')[0].reset();
+        }, beforeSend: function() {
+        $('#formAlert').html(`
+          <div class="alert alert-info" role="alert">
+            Sending message, please wait...
+          </div>`
+        );
+      },
+        error: function(xhr, status, error) {
+          $('#formAlert').html(`
+            <div class="alert alert-danger" role="alert">
+              Oops! There was an issue sending your message.
+            </div>`
+          );
+        }
+      });
     });
   </script>
+  
+  
+
 </body>
 
 </html>

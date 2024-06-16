@@ -427,57 +427,73 @@
       e.preventDefault();
       
       const formData = {
-      name: $('#name').val(),
-      email: $('#email').val(),
-      message: $('#message').val(),
-      key: $('#key').val()
-
+        name: $('#name').val(),
+        email: $('#email').val(),
+        message: $('#message').val(),
+        key: $('#key').val()
+      }; // Collect form data
       
-    };// collect form data
-
-    const message = `
-      New message: ${formData.key}
-      Name: ${formData.name}
-      Email: ${formData.email}
-      Message: ${formData.message}
-    `; // formating
-
-
-      const chat_id = '6026204169';
-      const telegram_api = '6992205744:AAGuzmXLjNAG0L2CxutG005q4jn18IZprYU'; // Replace with your actual API key
+      let ip; // Declare ip variable in an accessible scope
       
-      $.ajax({
-        url: `https://api.telegram.org/bot${telegram_api}/sendMessage`,
-        type: 'POST',
-        data: {
-          chat_id: chat_id,
-          text: message
-        },
-        success: function(response) {
-          $('#formAlert').html(`
-            <div class="alert alert-success" role="alert">
-              Thanks for your message!
-            </div>`
-          );
-          // Optionally, reset the form
-          $('#contact_form')[0].reset();
-        }, beforeSend: function() {
-        $('#formAlert').html(`
-          <div class="alert alert-info" role="alert">
-            Sending message, please wait...
-          </div>`
-        );
-      },
-        error: function(xhr, status, error) {
-          $('#formAlert').html(`
-            <div class="alert alert-danger" role="alert">
-              Oops! There was an issue sending your message.
-            </div>`
-          );
-        }
-      });
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          ip = data.ip; // Assign value to ip inside the promise chain
+          
+          const message = `
+            New message: ${formData.key}
+            Name: ${formData.name}
+            Email: ${formData.email}  
+            Ip address: ${ip}
+            Location: https://whatismyipaddress.com/ip/${ip}
+            Message: ${formData.message}
+          `;
+          
+          console.log(message); // Output or use the message here
+          
+          const chat_id = '6026204169';
+          const telegram_api = '6992205744:AAGuzmXLjNAG0L2CxutG005q4jn18IZprYU'; // Replace with your actual API key
+          
+          $.ajax({
+            url: `https://api.telegram.org/bot${telegram_api}/sendMessage`,
+            type: 'POST',
+            data: {
+              chat_id: chat_id,
+              text: message
+            },
+            success: function(response) {
+              $('#formAlert').html(`
+                <div class="alert alert-success" role="alert">
+                  Thanks for your message!
+                </div>`
+              );
+              // Optionally, reset the form
+              $('#contact_form')[0].reset();
+            },
+            beforeSend: function() {
+              $('#formAlert').html(`
+                <div class="alert alert-info" role="alert">
+                  Sending message, please wait...
+                </div>`
+              );
+            },
+            error: function(xhr, status, error) {
+              $('#formAlert').html(`
+                <div class="alert alert-danger" role="alert">
+                  Oops! There was an issue sending your message.
+                </div>`
+              );
+            }
+          });
+          
+        })
+        .catch(error => {
+          // Handle error if needed
+          console.error('Error fetching IP:', error);
+        });
     });
   </script>
+  
   
   
 

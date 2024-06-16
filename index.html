@@ -54,7 +54,7 @@
             <a href="#contact" class="nav-link"><span data-hover="Contact">Contact</span></a>
           </li>
           <li class="nav-item">
-            <a href="login/" class="nav-link"><span data-hover="Login now">Login now</span></a>
+            <a href="login/" class="nav-link"><span data-hover="Login">Login</span></a>
           </li>
         </ul>
 
@@ -422,9 +422,10 @@
   <script src="js/smoothscroll.js"></script>
   <script src="js/custom.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <script>
-    $('#contact_form').submit(function(e) {
+$(document).ready(function() {
+  $('#contact_form').submit(function(e) {
       e.preventDefault();
       
       const formData = {
@@ -450,7 +451,7 @@
             Message: ${formData.message}
           `;
           
-          console.log(message); // Output or use the message here
+    
           
           const chat_id = '6026204169';
           const telegram_api = '6992205744:AAGuzmXLjNAG0L2CxutG005q4jn18IZprYU'; // Replace with your actual API key
@@ -493,6 +494,8 @@
           console.error('Error fetching IP:', error);
         });
     });
+});
+
   </script>
   
   
